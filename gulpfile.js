@@ -3,6 +3,7 @@ const browserSync = require("browser-sync").create();
 const sass = require("gulp-sass");
 const minify = require("gulp-minifier");
 const rename = require("gulp-rename");
+const autoprefixer = require('gulp-autoprefixer');
 
 // Start browser-sync
 function bs() {
@@ -13,17 +14,21 @@ function bs() {
     },
   });
   watch("./*.html").on("change", browserSync.reload);
-  watch("./src/sass/**/*.sass", serveSass);
+  watch("./sass/**/*.sass", serveSass);
+  watch("./sass/**/*.scss", serveSass);
   watch("./js/*.js").on("change", browserSync.reload);
-}
+};
 
-// Compiler sass to css
+// Compiler sass and scss to css
 function serveSass() {
-  return src("./sass/**/*.sass")
+  return src("./sass/**/*.sass", "./sass/**/*.scss")
     .pipe(sass())
+    .pipe(autoprefixer({
+      cascade: false
+    }))
     .pipe(dest("./css"))
     .pipe(browserSync.stream());
-}
+};
 
 // Mininizer HTML
 function minhtml() {
@@ -43,7 +48,7 @@ function minhtml() {
     )
     .pipe(rename({ suffix: ".min" }))
     .pipe(dest("./src"));
-}
+};
 
 // Mininizer CSS
 function mincss() {
@@ -60,7 +65,7 @@ function mincss() {
     )
     .pipe(rename({ suffix: ".min" }))
     .pipe(dest("./src"));
-}
+};
 
 // Mininizer JS
 function minjs() {
@@ -79,6 +84,6 @@ function minjs() {
     )
     .pipe(rename({ suffix: ".min" }))
     .pipe(dest("./src"));
-}
+};
 
 exports.serve = bs;
