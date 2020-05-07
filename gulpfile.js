@@ -1,35 +1,48 @@
-const gulp        = require('gulp');
+const {src, dest, watch} = require('gulp');
 const browserSync = require('browser-sync').create();
+const sass = require('gulp-sass');
 const minify = require('gulp-minifier');
-const rename = require("gulp-rename");
+const rename = require('gulp-rename');
 
-// Static server
-gulp.task('bs', () => {
+// Start browser-sync
+function bs() {
+    serveSass(); 
     browserSync.init({
         server: {
-            baseDir: "./"
+            baseDir: './'
         }
     });
-    gulp.watch("./*.html").on('change', browserSync.reload);
-    gulp.watch("./*.css").on('change', browserSync.reload);
-});
-        
-// gulp.task('minhtml', () => {
-//     return gulp.src('./*.html').pipe(minify({
-//         minify: true,
-//         minifyHTML: {
-//         collapseWhitespace: true,
-//         conservativeCollapse: true,
-//         },
-//         getKeptComment: function (content, filePath) {
-//             let m = content.match(/\/\*![\s\S]*?\*\//img);
-//             return m && m.join('\n') + '\n' || '';
-//         }
-//     })).pipe(rename({suffix: '.min'})).pipe(gulp.dest('./src'));
-// });
+    watch('./*.html').on('change', browserSync.reload);
+    watch('./sass/**/*.sass').on('change', serveSass);
+    watch('./js/*.js').on('change', browserSync.reload);
+};
 
-gulp.task('mincss', () => {
-    return gulp.src('./*.css')
+// Compiler sass to css
+function serveSass() {
+    return src('./sass/*.sass')
+        .pipe(sass())
+        .pipe(dest('./css'))
+        .pipe(browserSync.stream());
+};
+
+// Mininizer HTML   
+function minhtml() {
+    return src('./*.html').pipe(minify({
+        minify: true,
+        minifyHTML: {
+        collapseWhitespace: true,
+        conservativeCollapse: true,
+        },
+        getKeptComment: function (content, filePath) {
+            let m = content.match(/\/\*![\s\S]*?\*\//img);
+            return m && m.join('\n') + '\n' || '';
+        }
+    })).pipe(rename({suffix: '.min'})).pipe(dest('./src'));
+};
+
+// Mininizer CSS
+function mincss() {
+    return src('./*.css')
     .pipe(minify({
         minify: true,
         minifyCSS: true,
@@ -37,18 +50,21 @@ gulp.task('mincss', () => {
             let m = content.match(/\/\*![\s\S]*?\*\//img);
             return m && m.join('\n') + '\n' || '';
         }
-    })).pipe(rename({suffix: '.min'})).pipe(gulp.dest('./src'));
-});
+    })).pipe(rename({suffix: '.min'})).pipe(dest('./src'));
+};
 
-// gulp.task('minjs', () => {
-//     return gulp.src('./*.js').pipe(minify({
-//         minify: true,
-//         minifyJS: {
-//         sourceMap: true
-//         },
-//         getKeptComment: function (content, filePath) {
-//             let m = content.match(/\/\*![\s\S]*?\*\//img);
-//             return m && m.join('\n') + '\n' || '';
-//         }
-//     })).pipe(rename({suffix: '.min'})).pipe(gulp.dest('./src'));
-// });
+// Mininizer JS
+function minjs() {
+    return src('./*.js').pipe(minify({
+        minify: true,
+        minifyJS: {
+        sourceMap: true
+        },
+        getKeptComment: function (content, filePath) {
+            let m = content.match(/\/\*![\s\S]*?\*\//img);
+            return m && m.join('\n') + '\n' || '';
+        }
+    })).pipe(rename({suffix: '.min'})).pipe(dest('./src'));
+};
+
+exports.serve = bs;
