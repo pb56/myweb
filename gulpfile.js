@@ -30,7 +30,7 @@ function serveSass() {
     .pipe(browserSync.stream());
 };
 
-// Mininizer HTML
+// Minimizer HTML
 function minhtml() {
   return src("./*.html")
     .pipe(
@@ -50,7 +50,7 @@ function minhtml() {
     .pipe(dest("./src"));
 };
 
-// Mininizer CSS
+// Minimizer CSS
 function mincss() {
   return src("./*.css")
     .pipe(
@@ -67,7 +67,7 @@ function mincss() {
     .pipe(dest("./src"));
 };
 
-// Mininizer JS
+// Minimizer JS
 function minjs() {
   return src("./*.js")
     .pipe(
