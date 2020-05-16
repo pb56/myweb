@@ -47,7 +47,7 @@ function minhtml() {
       })
     )
     .pipe(rename({ suffix: ".min" }))
-    .pipe(dest("./src"));
+    .pipe(dest("./"));
 };
 
 // Minimizer CSS
@@ -64,7 +64,7 @@ function mincss() {
       })
     )
     .pipe(rename({ suffix: ".min" }))
-    .pipe(dest("./src"));
+    .pipe(dest("./css"));
 };
 
 // Minimizer JS
@@ -83,7 +83,7 @@ function minjs() {
       })
     )
     .pipe(rename({ suffix: ".min" }))
-    .pipe(dest("./src"));
+    .pipe(dest("./js"));
 };
 
 exports.serve = bs;
