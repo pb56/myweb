@@ -372,6 +372,9 @@ img {
         height: 2px;
         background-color: #E3B873;
         margin: 0 10px; }
+  .section-subtitle {
+    margin-top: 1.7rem;
+    margin-bottom: 2.78rem; }
 
 .header {
   position: fixed;
@@ -548,6 +551,17 @@ img {
   background-color: #E3B873;
   color: #ffffff;
   padding: 1.214rem 2.6rem; }
+
+.design {
+  background: linear-gradient(#ffffff 50%, #131313 50%) no-repeat 0px 25px; }
+  .design__card__mask {
+    background-color: #000; }
+
+.section-subtitle__heading {
+  font-size: 1.20rem;
+  font-family: 'FuturaBookC', cursive;
+  line-height: 1.93rem;
+  text-align: center; }
 
 @media screen and (min-width: 1039px) and (max-width: 1239px) {
   .contacts__phone {
