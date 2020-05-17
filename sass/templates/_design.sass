@@ -1,13 +1,41 @@
 .design
-    background: linear-gradient($light 50%, $dark 50%) no-repeat 0px 25px;
+    background: linear-gradient($light 50%, $dark 50%) no-repeat 0px 25px
     &__card
         &__mask
-            background-color:#000
+            position: relative
+            z-index: 0
+            overflow: hidden
+            img
+                width: 100%
+            &-wrap
+                position: absolute
+                width: 100%
+                height: 100%
+                background: rgba(0, 0, 0, 0.3)
+        &--text--min
+            margin-right: 2.7rem
+            max-height: 15.2rem
+            width: 100%
+        &--text--defualt
+            margin-right: 3.1rem
+            max-height: 20.4rem
+            width: 100%
+        &--text--max
+            margin-right: 3.5rem
+            max-height: 30rem
+            width: 100%
+        &--tag--min
+            width: 16.1rem
+        &--tag--default
+            width: 16.2rem
+            padding-bottom: 1rem
+        &--tag--max
+            width: 16.3rem
+
 .section
     &-subtitle
         &__heading
-            font-size: 1.20rem
-            font-family: 'FuturaBookC', cursive
+            font-size: 1.43rem
+            font-family: 'Futura Book', cursive
             line-height: 1.93rem
             text-align: center
-                
