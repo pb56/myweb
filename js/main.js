@@ -42,14 +42,14 @@ $(document).ready(function() {
   });
 
   $(document).click(function (event) {
-   if ($(event.target).is(modal)) {
+    if ($(event.target).is(modal)) {
        modal.toggleClass('modal--visible');
-   }
+    }
 });
 
   $(document).keydown(function(event) {
-   if (modal.hasClass('modal--visible') && event.code == 'Escape') {
+    if (modal.hasClass('modal--visible') && event.code == 'Escape') {
        modal.toggleClass('modal--visible');
-   }
+    }
   });
 });
