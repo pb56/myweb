@@ -52,4 +52,46 @@ $(document).ready(function() {
        modal.toggleClass('modal--visible');
     }
   });
+
+  var mySwiper = new Swiper ('.swiper-container', {
+    // Optional parameters
+    loop: true,
+    pagination: {
+      el: '.swiper-pagination',
+      type: 'bullets',
+    },
+    navigation: {
+      nextEl: '.swiper-button-next',
+      prevEl: '.swiper-button-prev',
+    },
+  });
+
+
+  var twoSwiper = new Swiper ('.swiper-container-two', {
+    // Optional parameters
+    loop: true,
+    pagination: {
+      el: '.job-pagination',
+      type: 'bullets',
+    },
+    navigation: {
+      nextEl: '.job-next',
+      prevEl: '.job-prev',
+    },
+  });
+
+    var next = $('.swiper-button-next');
+    var prev = $('.swiper-button-prev');
+    var bullets = $('.swiper-pagination');
+
+    next.css('left', prev.width() + 10 + bullets.width() + 10)
+    bullets.css('left', prev.width() + 10)
+
+    var jobNext = $('.job-next');
+    var jobPrev = $('.job-prev');
+    var jobBullets = $('.job-pagination');
+
+    jobNext.css('left', jobPrev.width() + 10 + jobBullets.width() + 10)
+    jobBullets.css('left', jobPrev.width() + 10)
+
 });
