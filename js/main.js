@@ -45,7 +45,7 @@ $(document).ready(function() {
     if ($(event.target).is(modal)) {
        modal.toggleClass('modal--visible');
     }
-});
+  });
 
   $(document).keydown(function(event) {
     if (modal.hasClass('modal--visible') && event.code == 'Escape') {
@@ -93,5 +93,8 @@ $(document).ready(function() {
 
     jobNext.css('left', jobPrev.width() + 10 + jobBullets.width() + 10)
     jobBullets.css('left', jobPrev.width() + 10)
+
+  
+  new WOW().init();
 
 });
