@@ -381,11 +381,8 @@ template {
   align-items: flex-start;
   justify-content: space-between; }
 
-.col-30 {
+.col {
   flex-basis: 30%; }
-
-.col-50 {
-  width: 50%; }
 
 *, *:before, *:after {
   box-sizing: border-box; }
@@ -588,6 +585,8 @@ img {
 .projects {
   padding-bottom: 30rem; }
 
+<<<<<<< HEAD
+=======
 .swiper-slide {
   display: flex;
   flex-wrap: wrap; }
@@ -696,6 +695,7 @@ img {
 .types__section-title {
   margin-bottom: 2rem; }
 
+>>>>>>> 824a7a34a0e47eaa2c54b83f80063279313fdc61
 .card__text {
   position: relative;
   max-width: 23.6rem;
